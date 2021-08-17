@@ -1,4 +1,9 @@
 <% @tasks.each do |task| %>
-<%= task.name %>
-<%= task.content %>
+  <ul>
+    <li>
+      <%= task.name %>
+      <%= task.content %>
+      <%= link_to 'Edit', edit_task_path(task) %>
+    </li>
+  </ul>
 <% end %>
