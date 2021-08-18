@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'Tasks management system', type: :system do
+  
   describe 'a function of create a new task' do
     context 'case of creating a new task' do
       it 'created task will be displayed' do
