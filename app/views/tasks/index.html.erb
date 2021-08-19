@@ -1,10 +1,11 @@
 <h1>Your All Tasks</h1>
 <%= link_to 'Create a New Task', new_task_path %>
-<% @tasks.each do |task| %>
+<% @tasks.sort.reverse {|task| task.created_at }.each do |task| %>
   <ul>
     <li>
       <%= task.title %>
       <%= task.content %>
+      <%= task.created_at %>
       <%= link_to 'Show', task_path(task) %> |
       <%= link_to 'Edit', edit_task_path(task) %> |
       <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: %(Are you sure?)} %>
