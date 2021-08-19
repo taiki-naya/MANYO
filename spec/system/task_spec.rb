@@ -17,7 +17,7 @@ RSpec.describe 'Tasks management system', type: :system do
         visit new_task_path
         task = FactoryBot.create(:task, title: 'sort', content: 'reverse')
         visit tasks_path
-        expect(all('li').first).to have_content 'desc'
+        expect(all('li').first).to have_content 'reverse'
       end
     end
   end
