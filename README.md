@@ -7,7 +7,7 @@
 
  ---
 
- # Deploying to Heroku
+ # Procedure of deploying to Heroku
   1. run "heroku login" to login heroku
   1. run "heroku create" to create an app
   1. run "rails assets:precompile RAILS_ENV=productioh" to compile before deploy
