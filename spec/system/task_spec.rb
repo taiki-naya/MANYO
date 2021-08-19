@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'Tasks management system', type: :system do
-  
+
   describe 'a function of create a new task' do
     context 'case of creating a new task' do
       it 'created task will be displayed' do
@@ -8,6 +8,16 @@ RSpec.describe 'Tasks management system', type: :system do
         task = FactoryBot.create(:task, title: 'title', content: 'content')
         visit tasks_path
         expect(page).to have_content 'content'
+      end
+    end
+    context 'when tasks are ordered by created date as descending' do
+      it ' the created task will be displayed the top of tasks' do
+        visit new_task_path
+        task = FactoryBot.create(:task, title: 'ordered', content: 'desc')
+        visit new_task_path
+        task = FactoryBot.create(:task, title: 'sort', content: 'reverse')
+        visit tasks_path
+        expect(all('li').first).to have_content 'desc'
       end
     end
   end
