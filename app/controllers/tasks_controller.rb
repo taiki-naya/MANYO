@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     if params[:sort] == "true"
       @tasks = Task.all.order(due_date: :desc)
     else
-      @tasks = Task.all.order(created_at: :desc)
+      @tasks = Task.all.default_order
     end
     @path = request.fullpath
   end
@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.search(params[:search], params[:task]).order(created_at: :desc)
+    @tasks = Task.search(params[:search], params[:task]).default_order
     render :index
   end
 
