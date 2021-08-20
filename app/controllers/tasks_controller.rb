@@ -41,6 +41,12 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: %(Your Task was deleted)
   end
 
+  def search
+    @tasks = Task.search(params[:search])
+    @path = request.fullpath
+    render :index
+  end
+
   private
   def set_task
     @task = Task.find(params[:id])
