@@ -5,9 +5,17 @@ class Task < ApplicationRecord
   def self.search(search, status)
     status_num = status["status"]
     if search
-      Task.where('title LIKE ?', "%#{search}%").where("status = #{status_num}")
+      if status_num == '10'
+        Task.where('title LIKE ?', "%#{search}%")
+      else
+        Task.where('title LIKE ?', "%#{search}%").where("status = #{status_num}")
+      end
     else
-      Task.where("status = #{status_num}")
+      if status_num == '10'
+        Task.all
+      else
+        Task.where("status = #{status_num}")
+      end
     end
   end
 

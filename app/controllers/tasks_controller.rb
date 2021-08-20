@@ -42,7 +42,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.search(params[:search], params[:task])
+    @tasks = Task.search(params[:search], params[:task]).order(created_at: :desc)
     render :index
   end
 
