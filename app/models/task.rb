@@ -3,7 +3,7 @@ class Task < ApplicationRecord
   validates :content, presence: true
 
   scope :default_order, -> { order(created_at: :desc) }
-  
+
   def self.search(search, status)
     status_num = status["status"]
     scope :by_title, -> { where('title LIKE ?', "%#{search}%")}
