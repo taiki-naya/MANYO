@@ -10,14 +10,35 @@ RSpec.describe 'Tasks management system', type: :system do
         expect(page).to have_content 'content'
       end
     end
-    context 'when tasks are ordered by created date as descending' do
-      it ' the created task will be displayed the top of tasks' do
+    context 'when tasks are ordered by CREATED DATE as descending' do
+      it ' the last created task will be displayed the top of tasks' do
         visit new_task_path
         task = FactoryBot.create(:task, title: 'ordered', content: 'desc')
         visit new_task_path
         task = FactoryBot.create(:task, title: 'sort', content: 'reverse')
         visit tasks_path
-        expect(all('li').first).to have_content 'reverse'
+        expect(all('td').first).to have_content 'sort'
+      end
+    end
+    context 'when tasks are ordered by DUE DATE as descending' do
+      it ' the created task will be displayed the top of tasks' do
+        visit root_path
+        click_on 'Create a New Task', match: :first
+        fill_in 'task[title]', with: 'later'
+        fill_in 'task[content]', with: 'will do'
+        select '2021', from: 'task[due_date(1i)]'
+        select '9', from: 'task[due_date(2i)]'
+        select '1', from: 'task[due_date(3i)]'
+        click_on '登録する'
+        click_on 'Create a New Task', match: :first
+        fill_in 'task[title]', with: 'immediately'
+        fill_in 'task[content]', with: 'doing'
+        select '2021', from: 'task[due_date(1i)]'
+        select '8', from: 'task[due_date(2i)]'
+        select '21', from: 'task[due_date(3i)]'
+        click_on '登録する'
+        click_on '[▼]'
+        expect(all('td').first).to have_content 'later'
       end
     end
   end
