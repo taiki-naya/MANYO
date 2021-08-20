@@ -1,7 +1,12 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order(created_at: :desc)
+    if params[:sort] == 'true'
+      @tasks = Task.all.order(due_date: :desc)
+    else
+      @tasks = Task.all.order(created_at: :desc)
+    end
+    @path = request.fullpath
   end
 
   def show
