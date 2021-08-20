@@ -7,7 +7,7 @@
       <th>Task detail</th>
       <th>
         Due date
-        <% if @path.include? 'sort=ture' %>
+        <% if @path.include? 'sort=true' %>
           <%= link_to '[-]', tasks_path %>
         <% else %>
           <%= link_to '[▼]', tasks_path(sort: 'true') %>
