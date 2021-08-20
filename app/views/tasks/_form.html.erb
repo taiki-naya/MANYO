@@ -25,6 +25,12 @@
     <%= form.date_select :due_date, selected: Date.today %>
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%  %>
+    <%= form.select :status, [["--", 0], ["Waiting", 1], ["In Progress", 2], ["Completed", 3]] %>
+  </div>
+
   <%= form.submit %>
 
 <% end %>
