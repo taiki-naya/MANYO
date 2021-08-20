@@ -1,7 +1,13 @@
 <h1>Your All Tasks</h1>
-<%= form_tag(search_path,:method => 'get') do %>
+<%= form_tag(search_path, method: :get) do %>
   <%= text_field_tag :search, "", placeholder:'Search for Tasks by title' %>
-  <%= submit_tag 'Search', :name => nil %>
+  <select name="task[status]" id="task_status">
+    <option selected="selected" value="0">--</option>
+    <option value="1">Waiting</option>
+    <option value="2">In Progress</option>
+    <option value="3">Completed</option>
+  </select>
+  <%= submit_tag 'Search', name: nil %>
 <% end %>
 <%= link_to 'Create a New Task', new_task_path %>
 <table>
@@ -12,9 +18,9 @@
       <th>Task detail</th>
       <th>
         Due date
-        <% if @path.include? 'sort=true' %>
+        <% if params[:sort] == 'true' %>
           <%= link_to '[-]', tasks_path %>
-        <% elsif @path.include? 'search' %>
+        <% elsif params[:task].present? %>
         <% else %>
           <%= link_to '[▼]', tasks_path(sort: 'true') %>
         <% end %>

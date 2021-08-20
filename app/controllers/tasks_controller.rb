@@ -42,8 +42,7 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = Task.search(params[:search])
-    @path = request.fullpath
+    @tasks = Task.search(params[:search], params[:task])
     render :index
   end
 
