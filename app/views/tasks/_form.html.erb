@@ -20,6 +20,11 @@
     <%= form.text_field :content %>
   </div>
 
+  <div class="field">
+    <%= form.label :due %>
+    <%= form.date_select :due_date, selected: Date.today %>
+  </div>
+
   <%= form.submit %>
 
 <% end %>
