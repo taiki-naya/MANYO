@@ -14,17 +14,25 @@
 <table>
   <thead>
     <tr>
-      <th>Priority</th>
+      <th>
+        Priority
+        <% if params[:sort] == 'priority' %>
+          <%= link_to '[-]', tasks_path %>
+        <% elsif params[:task].present? %>
+        <% else %>
+          <%= link_to '[▼]', tasks_path(sort: 'priority') %>
+        <% end %>
+      </th>
       <th>Status</th>
       <th>Title</th>
       <th>Task detail</th>
       <th>
         Due date
-        <% if params[:sort] == 'true' %>
+        <% if params[:sort] == 'due' %>
           <%= link_to '[-]', tasks_path %>
         <% elsif params[:task].present? %>
         <% else %>
-          <%= link_to '[▼]', tasks_path(sort: 'true') %>
+          <%= link_to '[▼]', tasks_path(sort: 'due') %>
         <% end %>
       </th>
     </tr>
