@@ -23,4 +23,5 @@ class Task < ApplicationRecord
     end
   end
 
+  enum priority: [:Low, :Middle, :High]
 end
