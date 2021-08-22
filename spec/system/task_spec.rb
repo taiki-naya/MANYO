@@ -12,6 +12,7 @@ RSpec.describe 'Tasks management system', type: :system do
         select '8', from: 'task[due_date(2i)]'
         select '15', from: 'task[due_date(3i)]'
         select 'In Progress', from: 'task[status]'
+        select 'Middle', from: 'task[priority]'
         click_on '登録する'
         expect(page).to have_content 'content'
       end
@@ -26,6 +27,7 @@ RSpec.describe 'Tasks management system', type: :system do
         select '9', from: 'task[due_date(2i)]'
         select '1', from: 'task[due_date(3i)]'
         select 'In Progress', from: 'task[status]'
+        select 'High', from: 'task[priority]'
         click_on '登録する'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'immediately'
@@ -34,8 +36,9 @@ RSpec.describe 'Tasks management system', type: :system do
         select '8', from: 'task[due_date(2i)]'
         select '21', from: 'task[due_date(3i)]'
         select 'Waiting', from: 'task[status]'
+        select 'Low', from: 'task[priority]'
         click_on '登録する'
-        expect(all('td').first).to have_content 'Waiting'
+        expect(all('td').first).to have_content 'Low'
       end
     end
     context 'when tasks are ordered by DUE DATE as descending' do
@@ -48,6 +51,7 @@ RSpec.describe 'Tasks management system', type: :system do
         select '9', from: 'task[due_date(2i)]'
         select '1', from: 'task[due_date(3i)]'
         select 'In Progress', from: 'task[status]'
+        select 'High', from: 'task[priority]'
         click_on '登録する'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'immediately'
@@ -56,9 +60,36 @@ RSpec.describe 'Tasks management system', type: :system do
         select '8', from: 'task[due_date(2i)]'
         select '21', from: 'task[due_date(3i)]'
         select 'Waiting', from: 'task[status]'
+        select 'Low', from: 'task[priority]'
         click_on '登録する'
-        click_on '[▼]'
-        expect(all('td').first).to have_content 'In Progress'
+        click_on '[▼]', match: :first
+        click_on '[▼]', match: :first
+        expect(all('td').first).to have_content 'High'
+      end
+    end
+    context 'when tasks are ordered by PRIORITY as descending' do
+      it ' the created task will be displayed the top of tasks' do
+        visit root_path
+        click_on 'Create a New Task', match: :first
+        fill_in 'task[title]', with: 'later'
+        fill_in 'task[content]', with: 'will do'
+        select '2021', from: 'task[due_date(1i)]'
+        select '9', from: 'task[due_date(2i)]'
+        select '1', from: 'task[due_date(3i)]'
+        select 'In Progress', from: 'task[status]'
+        select 'Middle', from: 'task[priority]'
+        click_on '登録する'
+        click_on 'Create a New Task', match: :first
+        fill_in 'task[title]', with: 'immediately'
+        fill_in 'task[content]', with: 'doing'
+        select '2021', from: 'task[due_date(1i)]'
+        select '8', from: 'task[due_date(2i)]'
+        select '21', from: 'task[due_date(3i)]'
+        select 'Waiting', from: 'task[status]'
+        select 'High', from: 'task[priority]'
+        click_on '登録する'
+        click_on '[▼]', match: :first
+        expect(all('td').first).to have_content 'High'
       end
     end
   end
