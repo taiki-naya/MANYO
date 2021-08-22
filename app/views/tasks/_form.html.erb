@@ -11,24 +11,30 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :Title %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :task %>
+    <%= form.label :Task %>
     <%= form.text_field :content %>
   </div>
 
   <div class="field">
-    <%= form.label :due %>
+    <%= form.label :Due %>
     <%= form.date_select :due_date, selected: Date.today %>
   </div>
 
   <div class="field">
-    <%= form.label :status %>
+    <%= form.label :Status %>
     <%  %>
     <%= form.select :status, [["To Be Decided", 0], ["Waiting", 1], ["In Progress", 2], ["Completed", 3]] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Priority %>
+    <%  %>
+    <%= form.select :priority, [["Low"], ["Middle"], ["High"]] %>
   </div>
 
   <%= form.submit %>

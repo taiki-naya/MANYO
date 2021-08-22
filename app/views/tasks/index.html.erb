@@ -14,6 +14,7 @@
 <table>
   <thead>
     <tr>
+      <th>Priority</th>
       <th>Status</th>
       <th>Title</th>
       <th>Task detail</th>
@@ -31,6 +32,7 @@
   <tbody>
     <% @tasks.each do |task| %>
       <tr>
+        <td><%= task.priority %></td>
         <td><% if task.status == 1 %>
               Waiting
             <% elsif task.status == 2 %>
