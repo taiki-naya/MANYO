@@ -1,7 +1,13 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all
+    if params[:sort] == "due"
+      @tasks = Task.all.order(due_date: :desc).page(params[:page])
+    elsif params[:sort] == "priority"
+      @tasks = Task.all.order(priority: :desc).page(params[:page])
+    else
+      @tasks = Task.all.default_order.page(params[:page])
+    end
   end
 
   def show
@@ -24,7 +30,6 @@ class TasksController < ApplicationController
   end
 
   def update
-    @task = Task.find(params[:id])
     if @task.update(task_params)
       redirect_to tasks_path, notice: %(Your Task was successfully updated)
     else
@@ -37,13 +42,18 @@ class TasksController < ApplicationController
     redirect_to tasks_path, notice: %(Your Task was deleted)
   end
 
+  def search
+    @tasks = Task.search(params[:search], params[:task]).default_order
+    render :index
+  end
+
   private
   def set_task
     @task = Task.find(params[:id])
   end
 
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :due_date, :status, :priority)
   end
 
 end

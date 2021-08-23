@@ -1,15 +1,84 @@
-<h1>Your All Tasks</h1>
-<%= link_to 'Create a New Task', new_task_path %>
-<% @tasks.sort.reverse {|task| task.created_at }.each do |task| %>
-  <ul>
-    <li>
-      <%= task.title %>
-      <%= task.content %>
-      <%= task.created_at %>
-      <%= link_to 'Show', task_path(task) %> |
-      <%= link_to 'Edit', edit_task_path(task) %> |
-      <%= link_to 'Delete', task_path(task), method: :delete, data: { confirm: %(Are you sure?)} %>
-    </li>
-  </ul>
+<div class="page-header">
+  <h3>Your All Tasks</h3>
+</div>
+<div class="search">
+  <%= form_tag(search_path, method: :get) do %>
+    <%= text_field_tag :search, "", placeholder:'Search for Tasks by title' %>
+    <select name="task[status]" id="task_status">
+      <option selected="selected" value="10">--</option>
+      <option value="0">To Be Decided</option>
+      <option value="1">Waiting</option>
+      <option value="2">In Progress</option>
+      <option value="3">Completed</option>
+    </select>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+</div>
+<button type="button" class="btn btn-secondary">
+  <%= link_to 'Create a New Task', new_task_path %>
+</button>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>
+        Priority
+        <% if params[:sort] == 'priority' %>
+          <%= link_to '[-]', tasks_path %>
+        <% elsif params[:task].present? %>
+        <% else %>
+          <%= link_to '[▼]', tasks_path(sort: 'priority') %>
+        <% end %>
+      </th>
+      <th>Status</th>
+      <th>Title</th>
+      <th>Task detail</th>
+      <th>
+        Due date
+        <% if params[:sort] == 'due' %>
+          <%= link_to '[-]', tasks_path %>
+        <% elsif params[:task].present? %>
+        <% else %>
+          <%= link_to '[▼]', tasks_path(sort: 'due') %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.priority %></td>
+        <td><% if task.status == 1 %>
+              Waiting
+            <% elsif task.status == 2 %>
+              In Progress
+            <% elsif task.status == 3 %>
+              Completed
+            <% else %>
+              To Be Decided
+            <% end %>
+        </td>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.due_date %></td>
+        <td><%= link_to 'Show', task_path(task), class: "btn btn-primary btn-sm" %> |
+            <%= link_to 'Edit', edit_task_path(task), class: "btn btn-primary btn-sm" %> |
+            <%= link_to 'Delete', task_path(task),
+                                  method: :delete, data: { confirm: %(Are you sure?)},
+                                  class: "btn btn-danger btn-sm" %>
+        </td>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+<button type="button" class="btn btn-secondary">
+  <%= link_to 'Create a New Task', new_task_path %>
+</button>
+<% if params[:task].present? %>
+  <button type="button" class="btn btn-secondary">
+    <%= link_to 'Back', tasks_path %>
+  </button>
 <% end %>
-<%= link_to 'Create a New Task', new_task_path %>
+<div class="paginate">
+  <%= paginate @tasks %>
+</div>

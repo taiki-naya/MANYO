@@ -3,6 +3,7 @@
 ### Model : Task
  * title : string
  * content : text
+ * due_date : date
 
 
  ---
