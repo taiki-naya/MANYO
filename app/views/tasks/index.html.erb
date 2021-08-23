@@ -79,6 +79,8 @@
     <%= link_to 'Back', tasks_path %>
   </button>
 <% end %>
+<% if params[:page].present? %>
 <div class="paginate">
   <%= paginate @tasks %>
 </div>
+<% end %>
