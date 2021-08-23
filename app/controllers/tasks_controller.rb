@@ -2,11 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     if params[:sort] == "due"
-      @tasks = Task.all.order(due_date: :desc)
+      @tasks = Task.all.order(due_date: :desc).page(params[:page])
     elsif params[:sort] == "priority"
-      @tasks = Task.all.order(priority: :desc)
+      @tasks = Task.all.order(priority: :desc).page(params[:page])
     else
-      @tasks = Task.all.default_order
+      @tasks = Task.all.default_order.page(params[:page])
     end
   end
 

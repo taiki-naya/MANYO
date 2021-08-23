@@ -64,3 +64,5 @@
 </table>
 <%= link_to 'Create a New Task', new_task_path %>
 <%= link_to 'Back', tasks_path if params[:task].present? %>
+
+<%= paginate @tasks %>
