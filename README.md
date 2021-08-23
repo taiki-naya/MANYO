@@ -4,6 +4,8 @@
  * title : string
  * content : text
  * due_date : date
+ * status : integer
+ * priority : integer
 
 
  ---
