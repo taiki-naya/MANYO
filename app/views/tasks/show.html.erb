@@ -1,7 +1,17 @@
-<h1>Detail of this Task</h1>
+<div class="page-header">
+  <h3>Detail of this Task</h3>
+</div>
 
+<h4>Title of the Task</h4>
 <%= @task.title %>
+<h4>Detail of the Task</h4>
 <%= @task.content %>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<br><br><br>
+<button type="button" class="btn btn-secondary">
+<%= link_to 'Edit', edit_task_path(@task) %>
+</button>
+|
+<button type="button" class="btn btn-secondary">
 <%= link_to 'Back', tasks_path %>
+</button>

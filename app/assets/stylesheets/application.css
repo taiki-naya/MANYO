@@ -14,3 +14,37 @@
  *= require bootstrap/dist/css/bootstrap.min
  *= require_self
  */
+
+ .app_header {
+   text-align: center;
+ }
+ .app_header ul {
+   padding-inline-start: 0px;
+   display: flex;
+   align-items: center;
+   height: 70px;
+   background-color: gray;
+ }
+ .app_header li{
+   font-size: 22px;
+   color: white;
+   list-style: none;
+   text-align: center;
+ }
+ .app_header li a {
+   display: block;
+   text-align: center;
+ }
+
+ .pagination>li>a {
+   border: none;
+   color: #696969;
+ }
+
+  .pagination>.active>a {
+   background: #93c9ff;
+   border-radius: 15px;
+ }
+
+ .pagination>li>a:hover {
+   border-radius: 15px;
