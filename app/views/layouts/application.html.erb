@@ -15,10 +15,15 @@
         <h2 id="app_name">YTM</h2>
         <nav class="menu">
           <ul class="row">
-            <li class="col-sm-3"><%= link_to "Tasks index", tasks_path %></li>
-            <li class="col-sm-3"><%= link_to "Create", new_task_path %></li>
-            <li class="col-sm-3"><%= link_to "Under Construction" %></li>
-            <li class="col-sm-3"><%= link_to "Under Construction" %></li>
+            <% if logged_in? %>
+              <li class="col-sm-3"><%= link_to "Tasks index", tasks_path %></li>
+              <li class="col-sm-3"><%= link_to "Create", new_task_path %></li>
+              <li class="col-sm-3"><%= link_to "Your Profile", user_path(current_user.id) %></li>
+              <li class="col-sm-3"><%= link_to "Logout", session_path(current_user.id), method: :delete %></li>
+            <% else %>
+              <li class="col-sm-6"><%= link_to "Sign up", new_user_path %></li>
+              <li class="col-sm-6"><%= link_to "Login", new_session_path %></li>
+            <% end %>
           </ul>
         </nav>
       </header>
