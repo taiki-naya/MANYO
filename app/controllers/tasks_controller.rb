@@ -2,11 +2,11 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
     if params[:sort] == "due"
-      @tasks = Task.all.order(due_date: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(due_date: :desc).page(params[:page])
     elsif params[:sort] == "priority"
-      @tasks = Task.all.order(priority: :desc).page(params[:page])
+      @tasks = current_user.tasks.order(priority: :desc).page(params[:page])
     else
-      @tasks = Task.all.default_order.page(params[:page])
+      @tasks = current_user.tasks.default_order.page(params[:page])
     end
   end
 
@@ -21,7 +21,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       redirect_to tasks_path, notice: %(Your New Task was successfully created)
     else
