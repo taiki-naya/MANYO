@@ -30,6 +30,7 @@
         <% end %>
       </th>
       <th>Status</th>
+      <th>Poster</th>
       <th>Title</th>
       <th>Task detail</th>
       <th>
@@ -57,6 +58,7 @@
               To Be Decided
             <% end %>
         </td>
+        <td><%= task.user.name %></td>
         <td><%= task.title %></td>
         <td><%= task.content %></td>
         <td><%= task.due_date %></td>
