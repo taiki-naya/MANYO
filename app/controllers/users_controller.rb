@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     end
   end
   def show
+    @tasks = @user.tasks
   end
   private
   def set_user

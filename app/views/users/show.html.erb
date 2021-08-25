@@ -1,2 +1,38 @@
 <h1><strong><%= @user.name %></strong>'s page</h1>
 <p>email: <%= @user.email %></p>
+
+<% unless @user.id == current_user.id %>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Poster</th>
+      <th>Title</th>
+      <th>Task detail</th>
+      <th>Due date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.priority %></td>
+        <td><% if task.status == 1 %>
+              Waiting
+            <% elsif task.status == 2 %>
+              In Progress
+            <% elsif task.status == 3 %>
+              Completed
+            <% else %>
+              To Be Decided
+            <% end %>
+        </td>
+        <td><%= task.user.name %></td>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.due_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
