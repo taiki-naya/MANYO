@@ -43,7 +43,8 @@ class TasksController < ApplicationController
   end
 
   def search
-    @tasks = current_user.search(params[:search], params[:task]).default_order.page(params[:page])
+    @tasks = Task.search(params[:search], params[:task]).default_order.page(params[:page])
+    @tasks = @tasks.where(user_id: current_user.id)
     render :index
   end
 
