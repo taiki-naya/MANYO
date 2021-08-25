@@ -1,6 +1,7 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :not_admin
   def index
     @user = User.all.includes(:tasks)
   end
@@ -35,6 +36,9 @@ class Admin::UsersController < ApplicationController
   end
 
   private
+  def not_admin
+    redirect_to tasks_path, notice: "This page is for Administrator ONLY" unless current_user.admin?
+  end
   def set_user
     @user = User.find(params[:id])
   end

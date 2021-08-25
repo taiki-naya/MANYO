@@ -17,7 +17,11 @@ class UsersController < ApplicationController
     end
   end
   def show
-    @tasks = @user.tasks
+    if (current_user.admin? == true) || (@user.id == current_user.id)
+      @tasks = @user.tasks
+    else
+      redirect_to tasks_path
+    end
   end
   private
   def set_user

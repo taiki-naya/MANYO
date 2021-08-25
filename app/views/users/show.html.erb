@@ -36,3 +36,6 @@
   </tbody>
 </table>
 <% end %>
+<% if (current_user.admin? == true) && (@user.id == current_user.id) %>
+  <%= link_to 'Administrator ONLY', admin_users_path %>
+<% end %>
