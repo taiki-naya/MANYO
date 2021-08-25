@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
   before_action :set_user, only: [:edit, :update, :destroy]
   def index
-    @user = User.all#.includes(:tasks)
+    @user = User.all.includes(:tasks)
   end
 
   def new
