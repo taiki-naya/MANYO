@@ -1,6 +1,6 @@
 class Admin::UsersController < ApplicationController
   skip_before_action :login_required, only: [:new, :create]
-  before_action :set_user, only: [:edit, :update, :destroy]
+  before_action :set_user, only: [:edit, :update, :destroy, :authority]
   before_action :not_admin
   def index
     @user = User.all.includes(:tasks)
@@ -33,6 +33,15 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     redirect_to admin_users_path, notice: "#{@user.name}'s data was deleted"
+  end
+
+  def authority
+    if @user.admin? == true
+      @user.update_attribute(:admin, false)
+    elsif @user.admin? == false
+      @user.update_attribute(:admin, true)
+    end
+    redirect_to admin_users_path, notice: "#{@user.name}'s Class was changed"
   end
 
   private
