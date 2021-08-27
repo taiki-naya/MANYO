@@ -1,10 +1,16 @@
 require 'rails_helper'
 RSpec.describe 'Tasks management system', type: :system do
 
+  let!(:user) { FactoryBot.create(:user, name: 'user', email: 'user@user.com', password: 'useruser') }
+
   describe 'a function of create a new task' do
     context 'case of creating a new task' do
       it 'created task will be displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'title'
         fill_in 'task[content]', with: 'content'
@@ -20,6 +26,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'when tasks are ordered by CREATED DATE as descending' do
       it ' the last created task will be displayed the top of tasks' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'later'
         fill_in 'task[content]', with: 'will do'
@@ -44,6 +54,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'when tasks are ordered by DUE DATE as descending' do
       it ' the created task will be displayed the top of tasks' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'later'
         fill_in 'task[content]', with: 'will do'
@@ -70,6 +84,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'when tasks are ordered by PRIORITY as descending' do
       it ' the created task will be displayed the top of tasks' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'later'
         fill_in 'task[content]', with: 'will do'
@@ -98,6 +116,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'case of transiting to index page' do
       it 'tasks index will be displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'title'
         fill_in 'task[content]', with: 'content'
@@ -116,6 +138,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'case of transiting any tasks show page' do
       it 'detail of a applicable task will displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'transiting to'
         fill_in 'task[content]', with: 'show page'
@@ -134,6 +160,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'case of searching by TITLE' do
       it 'a task containing the searched string will be displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'later'
         fill_in 'task[content]', with: 'will do'
@@ -158,6 +188,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'case of searching by STATUS' do
       it 'a task containing the searched status will be displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'Summer vacation'
         fill_in 'task[content]', with: 'Go to the USA'
@@ -182,6 +216,10 @@ RSpec.describe 'Tasks management system', type: :system do
     context 'case of searching by TITLE and STATUS' do
       it 'a task containing the searched title and status will be displayed' do
         visit root_path
+        fill_in 'session[email]', with: 'user@user.com'
+        fill_in 'session[password]', with: 'useruser'
+        click_on 'Log in'
+        click_on 'Tasks index'
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'Summer vacation'
         fill_in 'task[content]', with: 'Go to the USA'
