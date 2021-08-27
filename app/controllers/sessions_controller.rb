@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :login_required, only: [:new, :create]
+  skip_before_action :login_required, only: [:new, :create, :register]
   def new
   end
 
@@ -9,9 +9,15 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to user_path(user.id), notice: 'Login seccessed'
     else
-      flash.now[:danger] = 'Login FAILED' 
+      flash.now[:danger] = 'Login FAILED'
       render :new
     end
+  end
+
+  def register
+    user = User.find(params[:id])
+    session[:user_id] = user.id
+    redirect_to user_path(user.id), notice: 'Login seccessed'
   end
 
   def destroy
