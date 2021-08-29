@@ -1,6 +1,6 @@
 <h1>For Administrator ONLY</h1>
 <%= link_to 'Create a New User', new_admin_user_path %>
-<table>
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>Class</th>
@@ -26,7 +26,7 @@
           <%= link_to 'Delete', admin_user_path(user),
                                 method: :delete, data: { confirm: %(Are you sure?)},
                                 class: "btn btn-danger btn-sm" %> |
-          <%= link_to 'Admin Authority', controller: 'admin/users', action: 'authority', id: user.id %>
+          <%= link_to 'Admin Authority', admin_user_path(user), class: "btn btn-danger btn-sm" %>
       </td>
     </tr>
     <% end %>
