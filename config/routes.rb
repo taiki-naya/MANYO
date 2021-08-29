@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
   end
-  get '/authority/:id', to: 'admin/users#authority'
+  get '/admin/users/:id', to: 'admin/users#authority'
   resources :users, only: [:new, :create, :show]
   resources :sessions, only: [:new, :create, :destroy]
 end
