@@ -24,4 +24,5 @@ class Task < ApplicationRecord
   end
 
   enum priority: [:Low, :Middle, :High]
+  belongs_to :user
 end

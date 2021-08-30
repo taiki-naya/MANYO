@@ -4,8 +4,14 @@
  * title : string
  * content : text
  * due_date : date
+ * status : integer
+ * priority : integer
 
-
+### Model : User
+ * name : string
+ * email : string
+ * password_digest : string
+ * admin : boolean
  ---
 
  # Procedure of deploying to Heroku
