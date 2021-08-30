@@ -21,7 +21,7 @@ end
   name = Faker::Games::Pokemon.name
   due_date = Faker::Date.in_date_period
   priority = 0
-  User.create!(title: name,
+  Task.create!(title: name,
                content: name,
                due_date: due_date,
                priority: priority
