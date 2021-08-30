@@ -67,8 +67,8 @@ RSpec.describe 'Labelling on Tasks system', type: :system do
     end
   end
   describe 'a function of searching a task with labels' do
-    context 'case of editing a task from 2 labels to 1 label' do
-      it 'edited task will be displayed with 1 label' do
+    context 'case of searching a task with a label' do
+      it 'seached task will be displayed' do
         click_on 'Create a New Task', match: :first
         check 'note'
         check 'pending'
