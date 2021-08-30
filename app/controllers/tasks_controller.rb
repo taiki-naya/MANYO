@@ -45,6 +45,10 @@ class TasksController < ApplicationController
   def search
     @tasks = Task.search(params[:search], params[:task]).default_order.page(params[:page])
     @tasks = @tasks.where(user_id: current_user.id)
+    labels_param = params[:labels]
+    if labels_param['label_id'].present?
+      @tasks = @tasks.joins(:labels).where(labels: { id: labels_param['label_id'] })
+    end
     render :index
   end
 
@@ -54,7 +58,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :due_date, :status, :priority)
+    params.require(:task).permit(:title, :content, :due_date, :status, :priority, :labels)
   end
 
 end
