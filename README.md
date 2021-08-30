@@ -7,7 +7,11 @@
  * status : integer
  * priority : integer
 
-
+### Model : Task
+ * name : string
+ * email : string
+ * password_digest : string
+ * admin : boolean
  ---
 
  # Procedure of deploying to Heroku
