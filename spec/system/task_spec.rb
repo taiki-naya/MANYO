@@ -1,10 +1,18 @@
 require 'rails_helper'
 RSpec.describe 'Tasks management system', type: :system do
 
-  describe 'a function of create a new task' do
+  let!(:user) { FactoryBot.create(:user, name: 'user', email: 'user@user.com', password: 'useruser') }
+  before do
+    visit root_path
+    fill_in 'session[email]', with: 'user@user.com'
+    fill_in 'session[password]', with: 'useruser'
+    click_on 'Log in'
+    click_on 'Tasks index'
+  end
+
+  describe 'a function of creating a new task' do
     context 'case of creating a new task' do
       it 'created task will be displayed' do
-        visit root_path
         click_on 'Create a New Task', match: :first
         fill_in 'task[title]', with: 'title'
         fill_in 'task[content]', with: 'content'
