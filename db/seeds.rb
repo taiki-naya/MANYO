@@ -7,16 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-Label.create!(
-  name: 'note'
-)
-Label.create!(
-  name: 'confirming'
-)
-Label.create!(
-  name: 'pending'
-)
-
 15.times do |n|
   name = Faker::Games::Pokemon.name
   email = Faker::Internet.email
