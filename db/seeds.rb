@@ -16,3 +16,31 @@ Label.create!(
 Label.create!(
   name: 'pending'
 )
+
+15.times do |n|
+  name = Faker::Games::Pokemon.name
+  email = Faker::Internet.email
+  password = "password"
+  User.create!(name: name,
+               email: email,
+               password: password,
+               )
+end
+
+15.times do |n|
+  name = Faker::Games::Pokemon.name
+  due_date = Faker::Date.in_date_period
+  priority = 0
+  User.create!(title: name,
+               content: name,
+               due_date: due_date,
+               priority: priority
+               )
+end
+
+15.times do |n|
+name = Faker::Games::Pokemon.name
+Label.create!(
+  name: name
+)
+end
