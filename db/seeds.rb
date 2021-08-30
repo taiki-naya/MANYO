@@ -20,7 +20,7 @@ end
 15.times do |n|
   name = Faker::Games::Pokemon.name
   due_date = Faker::Date.in_date_period
-  priority = Faker::Number.within(range: 1..3)
+  priority = Faker::Number.within(range: 1..2)
   user = Faker::Number.within(range: 1..40)
   Task.create!(title: name,
                content: name,
