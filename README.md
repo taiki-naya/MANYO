@@ -7,7 +7,7 @@
  * status : integer
  * priority : integer
 
-### Model : Task
+### Model : User
  * name : string
  * email : string
  * password_digest : string
