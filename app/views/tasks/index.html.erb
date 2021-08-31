@@ -4,7 +4,6 @@
 <div class="search">
   <%= form_tag(search_path, method: :get) do %>
     <%= text_field_tag :search, "", placeholder:'Search for Tasks by title' %>
-    <%= select(:labels, :label_id, options_for_select(Label.pluck(:name, :id)), { include_blank: true }) %>
     <select name="task[status]" id="task_status">
       <option selected="selected" value="10">--</option>
       <option value="0">To Be Decided</option>
@@ -31,7 +30,6 @@
         <% end %>
       </th>
       <th>Status</th>
-      <th>Label</th>
       <th>Poster</th>
       <th>Title</th>
       <th>Task detail</th>
@@ -59,11 +57,6 @@
             <% else %>
               To Be Decided
             <% end %>
-        </td>
-        <td>
-          <% task.labels.each do |label| %>
-            <%= label.name %>
-          <% end %>
         </td>
         <td><%= task.user.name %></td>
         <td><%= task.title %></td>

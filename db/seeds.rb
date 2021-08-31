@@ -6,33 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#50.times do |n|
+#  title = Faker::Games::Pokemon.name
+#  content = Faker::Games::Pokemon.name
+#  due_date = Faker::Date.in_date_period
+#  priority = 0
+#  Task.create!(title: title,
+#               content: content,
+#               due_date: due_date,
+#               priority: priority)
+#end
 
-15.times do |n|
-  name = Faker::Games::Pokemon.name
-  email = Faker::Internet.email
-  password = "password"
-  User.create!(name: name,
-               email: email,
-               password: password,
-               )
-end
-
-15.times do |n|
-  name = Faker::Games::Pokemon.name
-  due_date = Faker::Date.in_date_period
-  priority = Faker::Number.within(range: 1..2)
-  user = Faker::Number.within(range: 1..40)
-  Task.create!(title: name,
-               content: name,
-               due_date: due_date,
-               priority: priority,
-               user_id: user
-               )
-end
-
-15.times do |n|
 name = Faker::Games::Pokemon.name
-Label.create!(
-  name: name
+User.create!(
+  name: name, #アーボック
+  email: 'test@test.com',
+  password: 'testtest',
+  password_confirmation: 'testtest'
 )
-end
