@@ -6,12 +6,20 @@
  * due_date : date
  * status : integer
  * priority : integer
+ * user_id : bigint
 
 ### Model : User
  * name : string
  * email : string
  * password_digest : string
  * admin : boolean
+
+### Model : Labelling
+ * task_id : bigint
+ * label_id : bigint
+
+### Model : Label
+ * name : string
  ---
 
  # Procedure of deploying to Heroku
